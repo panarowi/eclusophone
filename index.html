@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chart using txtfile Data</title>
+  <script type="text/javascript" src="http://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+<body>
+ <script type="text/javascript">
+$.get("data.txt", function(data) {
+var xVal = 0;
+var allLines = data.split('\n');
+var chart = new CanvasJS.Chart("chartContainer",{
+    title :{
+        text: "Chart using Text File Data"
+    },
+    data: [{
+        type: "line",
+        dataPoints : [function()
+        {
+        if(allLines.length > 0) {
+           for(var i=0; i< allLines.length; i++) {
+           xVal +=.25;
+           dataPoints.push({x : xVal, y: parseInt(allLines[i])});
+    }
+}
+}]
+    }]
+});
+chart.render();
+},'text');
+</script>
+<script type="text/javascript" src="script.js"></script>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+</body>
+</html>
